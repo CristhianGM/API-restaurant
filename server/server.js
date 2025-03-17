@@ -6,6 +6,9 @@ import {createServer} from 'http';
 import { userRouter } from '../routes/user.js';
 import { dbConnection } from '../database/database.js';
 import { categoryRouter } from '../routes/category.js';
+import { companyRouter } from '../routes/company.js';
+import { localRouter } from '../routes/local.js';
+import { productRouter } from '../routes/product.js';
 
 
 export const startServer = () => {
@@ -30,10 +33,16 @@ export const startServer = () => {
         const paths = {
             user: '/api/users',
             category: '/api/categories',
+            company: '/api/companies',
+            local: '/api/locals',
+            product: '/api/products'
         }
         //TODO: Implementar rutas de usuarios
         app.use(paths.user, userRouter);
         app.use(paths.category, categoryRouter);
+        app.use(paths.company, companyRouter);
+        app.use(paths.local, localRouter);
+        app.use(paths.product, productRouter);
         // {} => {console.log("OLI");}
     }
     configureRoutes();

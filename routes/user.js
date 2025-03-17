@@ -53,12 +53,12 @@ userRouter.post('/', [
     check("email").custom(existeEmail),
     validarCampos],
     userPost);
-userRouter.put('/:id',[
+userRouter.put('/:id', [
+    check("id", "El id no es valido de MONGODB").isMongoId(),
+    check("id").custom(exiteIdUser),
     check("name", "El nombre es obligatorio").not().isEmpty(),
     check("name", "Debe tener al menos 3 caracteres").isLength({ min: 3 }),
-    // check("email", "El email es obligatorio").not().isEmpty(),
-    // check("email", "El email debe tener un dominio valido").isEmail(),
-    // check("email").custom(existeEmail),
+    check("role", "El rol es obligatorio").not().isEmpty(),
     check("role", "El rol debe ser valido").isIn(["ADMIN", "WAITER"]),
     validarCampos],
     userPut);
@@ -67,7 +67,10 @@ userRouter.delete('/:id', [
     check("id").custom(exiteIdUser),
     validarCampos],
     userDelete);
-
+//company
+//local
+// category (X)
+// product
 //userRouter.post('/');
 //Aqui estan lo endpoints de la entidad user
 //Un endpoint es básicamente un punto de acceso a un recurso dentro de la API.
